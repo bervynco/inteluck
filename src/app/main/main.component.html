@@ -1,0 +1,41 @@
+<div class="main-container">
+    
+    <div class="content-container">
+        <div class="content-section">
+            <div class="control-section">
+                <div class="title">
+                    <span class="data-count">{{orderList?orderList.length:0}}</span> rows
+                </div>
+                <div class="page-control" (click)="createNewOrder()">
+                    <img class="app-icon" src="../../assets/icons/plus.svg">
+                    <div id="space-eater"></div>
+                    <div class="app-text">Create New Order</div>
+                </div>
+            </div>
+            <div class="table-section">
+                <div class="table-wrapper">
+                    <table class="table-container">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Description</th>
+                                <th>Origin Address</th>
+                                <th>Destination Address</th>
+                                <th>Delivery Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orderList">
+                                <td>{{order.order_id}}</td>
+                                <td>{{order.order_description}}</td>
+                                <td>{{order.order_origin_address}}</td>
+                                <td>{{order.order_destination_address}}</td>
+                                <td>{{order.delivery_status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

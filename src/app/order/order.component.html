@@ -1,0 +1,41 @@
+<div class="order-container">
+    <div class="control-section">
+        <div class="page-control" (click)="modifyDeliveryStatus()">
+            <img class="app-icon" src="../../assets/icons/plus.svg">
+            <div id="space-eater"></div>
+            <div class="app-text">Change Delivery Status</div>
+        </div>
+        <div id="space-eater"></div>
+        <div class="page-control" (click)="createNewOrder()">
+            <img class="app-icon" src="../../assets/icons/plus.svg">
+            <div id="space-eater"></div>
+            <div class="app-text">Change Delivery Status</div>
+        </div>
+    </div>
+    <div class="order-content">
+        <div class="order-details">
+            <div class="title">Order Details</div>
+            <div class="content">
+                <div class="input-group">
+                    <input type="text" placeholder="Order ID" required="required" formControlName="email"/>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Order Description" required="required" formControlName="password"/>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Origin Address" required="required" formControlName="email"/>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Destination Address" required="required" formControlName="password"/>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Delivery Status" required="required" formControlName="password"/>
+                </div>
+            </div>
+        </div>
+        <div class="map-details">
+            <!-- <div id="map" class="map-container"> </div> -->
+        </div>
+    </div>
+    
+</div>
