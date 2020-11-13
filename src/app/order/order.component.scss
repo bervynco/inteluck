@@ -11,11 +11,12 @@ app-order {
     flex-direction: column;
     & > .control-section {
         display: flex;
-        flex: 0 0 6%;
+        flex: 0 0 7%;
         background-color: white;
 
         & > #space-eater{
-            width:20px;
+            display: flex;
+            flex: 1 0 auto;
         }
     }
 
@@ -78,30 +79,3 @@ app-order {
     }
 } 
 
-.page-control {
-    display: flex;
-    flex: 0 0 15%;
-    color: #ff7e00;
-    // font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    & > #space-eater {
-        display: flex;
-        width: 5px;
-    }
-    
-}
-
-
-.app-icon {
-    width: 20px;
-    padding-right: 5px;
-}
-
-.app-text {
-    display: flex;
-    flex: 1 0 auto;
-    align-items: center;
-    justify-content: flex-end;
-
-}

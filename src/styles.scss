@@ -121,3 +121,35 @@ input::-webkit-input-placeholder
         color: rgba(60,60,60,1);
     }
 }
+
+
+.app-icon {
+    width: 20px;
+    padding-right: 5px;
+}
+
+.app-text {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.orange {
+    color: #ff7e00;
+}
+
+
+.page-control {
+    display: flex;
+    flex: 0 0 15%;
+    
+    // font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    & > #space-eater {
+        width: 5px;
+    }
+    
+}

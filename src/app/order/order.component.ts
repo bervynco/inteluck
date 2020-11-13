@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../environment';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-order',
 	templateUrl: './order.component.html',
@@ -15,7 +16,7 @@ export class OrderComponent implements OnInit {
 	ngOnInit() {
 		this.setupMap();
 	}
-	constructor() { }
+	constructor(private router: Router) { }
 	setCurrentLocation() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var locationMarker = null;
@@ -37,6 +38,10 @@ export class OrderComponent implements OnInit {
 				enableHighAccuracy: true
 			}
 		);
+	}
+
+	backToOrderList() {
+
 	}
 	setupMap() {
 		this.setCurrentLocation();

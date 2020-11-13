@@ -1,16 +1,22 @@
 <div class="order-container">
     <div class="control-section">
+        <div class="page-control orange" (click)="backToOrderList()">
+            <img class="app-icon" src="../../assets/icons/back.svg">
+            <div id="space-eater"></div>
+            <div class="app-text">Back to Order Page</div>
+        </div>
+        <div id="space-eater"></div>
+        <div class="page-control" (click)="createNewOrder()">
+            <img class="app-icon" src="../../assets/icons/delete.svg">
+            <div id="space-eater"></div>
+            <div class="app-text">Delete Order</div>
+        </div>
         <div class="page-control" (click)="modifyDeliveryStatus()">
             <img class="app-icon" src="../../assets/icons/plus.svg">
             <div id="space-eater"></div>
             <div class="app-text">Change Delivery Status</div>
         </div>
-        <div id="space-eater"></div>
-        <div class="page-control" (click)="createNewOrder()">
-            <img class="app-icon" src="../../assets/icons/plus.svg">
-            <div id="space-eater"></div>
-            <div class="app-text">Change Delivery Status</div>
-        </div>
+        
     </div>
     <div class="order-content">
         <div class="order-details">
