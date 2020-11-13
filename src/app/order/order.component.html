@@ -17,24 +17,54 @@
             <div class="title">Order Details</div>
             <div class="content">
                 <div class="input-group">
-                    <input type="text" placeholder="Order ID" required="required" formControlName="email"/>
+                    <input type="text" placeholder="Order ID" required="required" disabled formControlName="order_id"/>
                 </div>
                 <div class="input-group">
-                    <input type="text" placeholder="Order Description" required="required" formControlName="password"/>
+                    <input type="text" placeholder="Order Description" required="required" formControlName="order_description"/>
                 </div>
                 <div class="input-group">
-                    <input type="email" placeholder="Origin Address" required="required" formControlName="email"/>
+                    <input type="email" placeholder="Origin Address" required="required" formControlName="order_origin_address"/>
                 </div>
                 <div class="input-group">
-                    <input type="password" placeholder="Destination Address" required="required" formControlName="password"/>
+                    <input type="password" placeholder="Destination Address" required="required" formControlName="order_destination_address"/>
                 </div>
                 <div class="input-group">
-                    <input type="password" placeholder="Delivery Status" required="required" formControlName="password"/>
+                    <input type="password" placeholder="Delivery Status" required="required" disabled formControlName="delivery_status"/>
                 </div>
             </div>
         </div>
-        <div class="map-details">
-            <!-- <div id="map" class="map-container"> </div> -->
+        <div class="order-subdetails">
+            <div class="delivery-tracker">
+                <div class="table-wrapper">
+                    <table class="table-container">
+                        <thead>
+                            <tr>
+                                <th>Delivery Timestamp</th>
+                                <th>Delivery Description</th>
+                                <th>Delivery Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>November 9, 2020 12:30pm</td>
+                                <td>In transit</td>
+                                <td>For delivery</td>
+                            </tr>
+                            <!-- <tr *ngFor="let order of orderList">
+                                <td>{{order.order_id}}</td>
+                                <td>{{order.order_description}}</td>
+                                <td>{{order.order_origin_address}}</td>
+                                <td>{{order.order_destination_address}}</td>
+                                <td>{{order.delivery_status}}</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="space-eater"></div>
+            <div class="map-container">
+                <div id="map" style="width:100%;"> 
+            </div>
         </div>
     </div>
     

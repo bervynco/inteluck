@@ -29,13 +29,14 @@ app-order {
             background-color: rgba(255,255,255);
             margin: 10px;
             flex-direction: column;
-
+            padding:10px;
             & > .title{
                 display: flex;
                 flex: 0 0 10%;
                 font-size: 1.5vw;
                 font-weight: bold;
                 align-items: center;
+
             }
 
             & > .content {
@@ -45,17 +46,33 @@ app-order {
             }
         }
 
-        & > .map-details {
+        & > .order-subdetails {
             display: flex;
             flex: 1 0 auto;
+            flex-direction: column;
             align-items: stretch;
             justify-content: stretch;
-            background-color: rgba(255,255,255);
+            
             margin: 10px;
+
+            & > .delivery-tracker {
+                display: flex; 
+                flex: 1 0 auto;
+                background-color: rgba(255,255,255);
+                & > .table-wrapper {
+                    display: flex;
+                    flex: 1 0 auto;
+                }
+            }
+            & > #space-eater {
+                display: flex;
+                flex: 0 0 10px;
+            }
             & > .map-container {
-                position: absolute;
-                // width:55%;
-                height: auto;
+               
+                display: flex; 
+                flex: 0 0 60%;
+                background-color: rgba(255,255,255);
             }
         }
     }

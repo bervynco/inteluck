@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
 	map: mapboxgl.Map;
 	style = 'mapbox://styles/mapbox/streets-v11';
 	ngOnInit() {
-		// this.setupMap();
+		this.setupMap();
 	}
 	constructor() { }
 	setCurrentLocation() {
