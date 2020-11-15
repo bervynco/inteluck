@@ -32,7 +32,7 @@ export class DataService {
 	}
 
 	deleteOrder(orderId){
-		return  this.http.post(this.BASE_PATH + 'updateOrder', {
+		return  this.http.post(this.BASE_PATH + 'deleteOrder', {
 			"order_id": orderId
 		});
 	}

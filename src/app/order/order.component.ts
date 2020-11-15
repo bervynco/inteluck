@@ -97,6 +97,17 @@ export class OrderComponent implements OnInit {
 			'order_description': orderDetails.order_description
 		});
 	}
+
+	deleteOrder(orderId) {
+		this.dataService.deleteOrder(orderId).subscribe(
+			(res:any)=> {
+				this.router.navigateByUrl('/main');
+			},
+			(error)=> {
+
+			}
+		)
+	}
 	initializePage(orderId) {
 		this.dataService.getOrderDetails(orderId).subscribe(
 			(res:any)=> {
