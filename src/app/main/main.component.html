@@ -30,7 +30,7 @@
                                 <td>{{order.order_description}}</td>
                                 <td>{{order.order_origin_address}}</td>
                                 <td>{{order.order_destination_address}}</td>
-                                <td>{{order.delivery_status}}</td>
+                                <td>{{order.delivery[order.delivery.length - 1]['Delivery Status Name']}}</td>
                             </tr>
                         </tbody>
                     </table>
