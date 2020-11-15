@@ -3,7 +3,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../environment';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { DataService } from '../data.service';
-import { FormGroup,  FormBuilder,  Validators, FormControl } from '@angular/forms';
+import { FormGroup,  FormBuilder,  Validators, FormControl, FormArray } from '@angular/forms';
 
 @Component({
 	selector: 'app-order',
@@ -89,10 +89,19 @@ export class OrderComponent implements OnInit {
 		this.map.addControl(new mapboxgl.NavigationControl());
 	}
 
+	patchFormValue(orderDetails) {
+		this.orderForm.patchValue({
+			'order_id': orderDetails.order_id,
+			'order_origin_address': orderDetails.order_origin_address,
+			'order_destination_address': orderDetails.order_destination_address,
+			'order_description': orderDetails.order_description
+		});
+	}
 	initializePage(orderId) {
 		this.dataService.getOrderDetails(orderId).subscribe(
 			(res:any)=> {
 				this.orderDetails = res[0];
+				this.patchFormValue(this.orderDetails);
 				console.log(this.orderDetails);
 			},
 			(error) => {}
