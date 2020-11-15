@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
+import { DataService } from '../data.service';
+import { FormGroup,  FormBuilder,  Validators, FormControl } from '@angular/forms';
+
 @Component({
 	selector: 'app-order',
 	templateUrl: './order.component.html',
@@ -12,11 +15,41 @@ export class OrderComponent implements OnInit {
 	latitude = 0;
 	longitude = 0;
 	map: mapboxgl.Map;
+	orderDetails:any;
+	orderId: any;
 	style = 'mapbox://styles/mapbox/streets-v11';
+	orderForm: FormGroup;
 	ngOnInit() {
 		this.setupMap();
+		this.orderId = this.activeRoute.snapshot.params.id;
+		if(this.orderId !== 0) {
+			this.initializePage(this.orderId);
+		}
+		else {
+			
+		}
+		
 	}
-	constructor(private router: Router) { }
+	constructor(private router: Router, private dataService:DataService, private activeRoute:ActivatedRoute, private formBuilder:FormBuilder) {
+		this.setupForm();
+	}
+	setupForm() {
+		this.orderForm = this.formBuilder.group({
+			order_id: new FormControl("", [
+				Validators.required
+			]),
+			order_description: new FormControl("", [
+				Validators.required
+			]),
+			order_origin_address: new FormControl("", [
+				Validators.required
+			]),
+			order_destination_address: new FormControl("", [
+				Validators.required
+			])
+
+		});
+	}
 	setCurrentLocation() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var locationMarker = null;
@@ -41,7 +74,7 @@ export class OrderComponent implements OnInit {
 	}
 
 	backToOrderList() {
-
+		this.router.navigateByUrl('/main');
 	}
 	setupMap() {
 		this.setCurrentLocation();
@@ -54,5 +87,16 @@ export class OrderComponent implements OnInit {
 		});
 		// Add map controls
 		this.map.addControl(new mapboxgl.NavigationControl());
+	}
+
+	initializePage(orderId) {
+		this.dataService.getOrderDetails(orderId).subscribe(
+			(res:any)=> {
+				this.orderDetails = res[0];
+				console.log(this.orderDetails);
+			},
+			(error) => {}
+
+		)
 	}
 }

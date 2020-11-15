@@ -41,12 +41,17 @@ export class MainComponent implements OnInit {
 		this.dataService.getOrderList().subscribe(
 			(res:any) => {
 				console.log(res);
-				this.orderList = res;
+				this.orderList = res[0];
 			},
 			(error)=> {
 				console.log(error);
 			}
 		)
+	}
+
+	navigateToOrderDetails(orderId){
+		console.log(orderId);
+		this.router.navigateByUrl('/order/' + orderId);
 	}
 	createNewOrder() {
 		this.router.navigateByUrl('/order/0');

@@ -19,7 +19,7 @@ export class DataService {
 	}
 
 	getOrderDetails(orderId) {
-		return  this.http.get(this.BASE_PATH + 'getOrderList/' + orderId);
+		return  this.http.get(this.BASE_PATH + 'getOrderDetails/' + orderId);
 	}
   	addOrder(orderDetails) {
 		return  this.http.post(this.BASE_PATH + 'addOrder', orderDetails

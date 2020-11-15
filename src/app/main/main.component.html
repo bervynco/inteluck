@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let order of orderList">
+                            <tr *ngFor="let order of orderList" (click)="navigateToOrderDetails(order.order_id);">
                                 <td>{{order.order_id}}</td>
                                 <td>{{order.order_description}}</td>
                                 <td>{{order.order_origin_address}}</td>
