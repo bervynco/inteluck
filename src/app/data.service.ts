@@ -10,6 +10,9 @@ export class DataService {
 	BASE_PATH:String = "http://localhost:3333/";
   	constructor(private http: HttpClient) { }
 
+	getNewOrderId() {
+		return  this.http.get(this.BASE_PATH + 'getNewOrderId');
+	}
 	getOrderList() {
 		return  this.http.get(this.BASE_PATH + 'getOrderList');
 	}

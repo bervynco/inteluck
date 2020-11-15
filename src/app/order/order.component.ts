@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../environment';
 import { Router, ActivatedRoute  } from '@angular/router';
@@ -15,19 +15,26 @@ export class OrderComponent implements OnInit {
 	latitude = 0;
 	longitude = 0;
 	map: mapboxgl.Map;
-	orderDetails:any;
-	orderId: any;
+	orderDetails:any = null;
 	style = 'mapbox://styles/mapbox/streets-v11';
 	orderForm: FormGroup;
+	forCreateFlag:Boolean;
 	ngOnInit() {
 		this.setupMap();
-		this.orderId = this.activeRoute.snapshot.params.id;
-		if(this.orderId !== 0) {
-			this.initializePage(this.orderId);
-		}
-		else {
-			
-		}
+		this.activeRoute.paramMap.subscribe(params => {
+			let orderId = params.get("id");
+			console.log(orderId);
+			if(orderId !== "0") {
+				this.forCreateFlag = false;
+				console.log("Initialize Page");
+				this.initializePage(orderId);
+			}
+			else {
+				this.forCreateFlag = true;
+				this.getNewId();
+			}
+		});
+		
 		
 	}
 	constructor(private router: Router, private dataService:DataService, private activeRoute:ActivatedRoute, private formBuilder:FormBuilder) {
@@ -118,5 +125,34 @@ export class OrderComponent implements OnInit {
 			(error) => {}
 
 		)
+	}
+	getNewId() {
+		this.dataService.getNewOrderId().subscribe(
+			(res:any)=> {
+				this.orderForm.patchValue({
+					'order_id': res.order_id
+				});
+			},
+			(error) => {}
+
+		)
+	}
+
+	createOrder() {
+		let postDetails = this.orderForm.value;
+		console.log(postDetails);
+		this.dataService.addOrder(postDetails).subscribe(
+			(res:any)=> {
+				console.log(res);
+				this.router.navigateByUrl('/main');
+			},
+			(error)=> {
+
+			}
+		)
+	}
+
+	updateOrder() {
+
 	}
 }

@@ -34,6 +34,8 @@
                 <div class="input-group">
                     <input type="text" placeholder="Destination Address" required="required" formControlName="order_destination_address"/>
                 </div>
+                <button type="submit" class="submit-button" [disabled]="!orderForm.valid" *ngIf="forCreateFlag === true" (click)="createOrder()">Create Order </button>
+                <button type="submit" class="submit-button" [disabled]="!orderForm.valid" *ngIf="forCreateFlag === false" (click)="updateOrder()">Update Order </button>
             </form>
         </div>
         <div class="order-subdetails">
@@ -46,12 +48,15 @@
                                 <th>Delivery Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr *ngFor="let delivery of orderDetails.delivery">
-                                <td>{{delivery['Delivery Created']}}</td>
-                                <td>{{delivery['Delivery Status Name']}}</td>
-                            </tr>
-                        </tbody>
+                        <ng-container *ngIf="orderDetails !== null">
+                            <tbody>
+                                <tr *ngFor="let delivery of orderDetails.delivery">
+                                    <td>{{delivery['Delivery Created']}}</td>
+                                    <td>{{delivery['Delivery Status Name']}}</td>
+                                </tr>
+                            </tbody>
+                        </ng-container>
+                        
                     </table>
                 </div>
             </div>

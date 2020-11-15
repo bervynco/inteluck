@@ -153,3 +153,47 @@ input::-webkit-input-placeholder
     }
     
 }
+
+
+.submit-button {
+    position: relative;
+    height: 45px;
+    margin: 10px 7px;
+    padding: 5px 5px;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* color: #EB4E29; */
+    color: whitesmoke;
+    background: #ff7e00;
+    /* background: transparent; */
+    border: 1px solid #ff7e00;
+    border-radius: 2px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    z-index: 1;
+    cursor: pointer;
+    width: 100%;
+}
+.cancel-button {
+    position: relative;
+    height: 45px;
+    margin: 10px 7px;
+    padding: 5px 5px;
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 2px;
+    /* color: #EB4E29; */
+    color: Black;
+    background: rgba(255,255,255, 1);
+    /* background: transparent; */
+    border: 1px solid rgba(100,100,100, 0.5);
+    border-radius: 2px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow:hidden;
+    z-index: 1;
+    cursor: pointer;
+    width: 100%;
+}
