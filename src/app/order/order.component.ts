@@ -153,6 +153,16 @@ export class OrderComponent implements OnInit {
 	}
 
 	updateOrder() {
+		let postDetails = this.orderForm.value;
+		console.log(postDetails);
+		this.dataService.updateOrder(postDetails).subscribe(
+			(res:any)=> {
+				console.log(res);
+				this.router.navigateByUrl('/main');
+			},
+			(error)=> {
 
+			}
+		)
 	}
 }
