@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
+import { MapboxDirections } from  "@mapbox/mapbox-gl-directions";
 import { environment } from '../environment';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { DataService } from '../data.service';
 import { FormGroup,  FormBuilder,  Validators, FormControl, FormArray } from '@angular/forms';
-
 @Component({
 	selector: 'app-order',
 	templateUrl: './order.component.html',
@@ -12,15 +12,12 @@ import { FormGroup,  FormBuilder,  Validators, FormControl, FormArray } from '@a
 	encapsulation: ViewEncapsulation.None
 })
 export class OrderComponent implements OnInit {
-	latitude = 0;
-	longitude = 0;
 	map: mapboxgl.Map;
 	orderDetails:any = null;
-	style = 'mapbox://styles/mapbox/streets-v11';
 	orderForm: FormGroup;
 	forCreateFlag:Boolean;
 	ngOnInit() {
-		this.setupMap();
+		this.setupMapAndLocation();
 		this.activeRoute.paramMap.subscribe(params => {
 			let orderId = params.get("id");
 			console.log(orderId);
@@ -57,43 +54,49 @@ export class OrderComponent implements OnInit {
 
 		});
 	}
-	setCurrentLocation() {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var locationMarker = null;
-			if (locationMarker){
-			  // return if there is a locationMarker bug
-			  return;
+
+	setupMapAndLocation() {
+		if (navigator.geolocation) {
+		  navigator.geolocation.getCurrentPosition((position: Position) => {
+			if (position) {
+			  console.log("Latitude: " + position.coords.latitude +
+				"Longitude: " + position.coords.longitude);
+			  this.setupMap(position.coords.latitude,  position.coords.longitude);
 			}
-			console.log(position.coords);
-			// sets default position to your position
-			this.latitude = position.coords["latitude"];
-			this.longitude = position.coords["longitude"];
-			
-			
-			},
-			function(error) {
-				console.log("Error: ", error);
-			},
-			{
-				enableHighAccuracy: true
-			}
-		);
-	}
+		  },
+			(error: PositionError) => console.log(error));
+		} else {
+		  alert("Geolocation is not supported by this browser.");
+		}
+	  }
 
 	backToOrderList() {
 		this.router.navigateByUrl('/main');
 	}
-	setupMap() {
-		this.setCurrentLocation();
-      	this.map = new mapboxgl.Map({
+	setupMap(latitude, longitude) {
+		console.log(latitude, longitude);
+		this.map = new mapboxgl.Map({
 			accessToken: environment.mapbox.accessToken,
 			container: 'map',
-			style: this.style,
+			style: 'mapbox://styles/mapbox/streets-v11',
 			zoom: 13,
-			center: [this.latitude, this.longitude]
+			center: [longitude, latitude]
 		});
+		navigator.geolocation.getCurrentPosition(function(position) {
+			console.log(this);
+			
+		});
+		// console.log(this.setCurrentLocation());
+		// let coords = 
+		
 		// Add map controls
-		this.map.addControl(new mapboxgl.NavigationControl());
+		// this.map.addControl(
+		// 	new MapboxDirections({
+		// 		accessToken: mapboxgl.accessToken
+		// 	}),
+		// 	'top-left'
+		// );
+		// this.map.addControl(new mapboxgl.NavigationControl());
 	}
 
 	patchFormValue(orderDetails) {
