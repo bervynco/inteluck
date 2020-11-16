@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
-import { MapboxDirections } from  "@mapbox/mapbox-gl-directions";
+import * as MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import { environment } from '../environment';
 import { Router, ActivatedRoute  } from '@angular/router';
 import { DataService } from '../data.service';
@@ -82,6 +82,13 @@ export class OrderComponent implements OnInit {
 			zoom: 13,
 			center: [longitude, latitude]
 		});
+		let direction = this.map.addControl(
+			new MapboxDirections({
+				accessToken: environment.mapbox.accessToken
+			}),
+			'top-left'
+		);
+		
 		navigator.geolocation.getCurrentPosition(function(position) {
 			console.log(this);
 			
@@ -90,13 +97,10 @@ export class OrderComponent implements OnInit {
 		// let coords = 
 		
 		// Add map controls
-		// this.map.addControl(
-		// 	new MapboxDirections({
-		// 		accessToken: mapboxgl.accessToken
-		// 	}),
-		// 	'top-left'
-		// );
-		// this.map.addControl(new mapboxgl.NavigationControl());
+		
+		this.map.addControl(direction, 'top-left');
+		this.map.addControl(new mapboxgl.NavigationControl());
+		
 	}
 
 	patchFormValue(orderDetails) {
